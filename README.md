@@ -5,6 +5,7 @@ The repository contains the code used for running the experiments that are prese
 
 ## Data
 
+The data used in the experiments is a corpus of Finnish news articles by the Finnish Broadcasting Company YLE, containing in total over 700 000 articles from the years 2011-2018. The dataset is available for acedemic use at https://korp.csc.fi/download/YLE/fi/2011-2018-src/.
 
 ## Data preprocessing
 
