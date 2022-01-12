@@ -113,6 +113,9 @@ To run the code, add the required arguments to the following code:
 python3 contrastive_training.py
 ```
 
+## Saving timepoint and document vectors 
+
+
 ## Unsupervised classification
 
 
