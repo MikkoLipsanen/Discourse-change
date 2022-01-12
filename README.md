@@ -24,7 +24,7 @@ Synthetic datasets can be created using the code in the `get_samples.py` file. T
 
 `--emb_path`: Path where `embeddings_dict.pkl` file was saved during preprocessing. Default path is `data/embeddings_dict.pkl`.
 
-`--save_path`: Folder where the generated samples are saved. Default path is `data/samples`. This folder needs to ave two subfolders, `train` and `test`.
+`--save_path`: Folder where the generated samples are saved. Default path is `data/samples`. This folder needs to have two subfolders, `train` and `test`.
 
 `--tr_samples`: Number of samples datasets that are needed for training and validation sets combined. Default number is 5000.
 
