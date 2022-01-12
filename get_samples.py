@@ -20,8 +20,8 @@ parser.add_argument('--save_path', type=str, default='data/samples/', help='path
 parser.add_argument('--tr_samples', type=int, default=5000, help='Number of training datasets created and used')
 parser.add_argument('--ts_samples', type=int, default=2000, help='Number of test datasets created and used')
 parser.add_argument('--num_timepoints', type=int, default=100, help='number of timepoints in each sample')
-parser.add_argument('--min_docs', type=int, default=4000, help='minimum number of documents in each datapoint')
-parser.add_argument('--max_docs', type=int, default=5000, help='maximum number of documents in each datapoint')
+parser.add_argument('--min_docs', type=int, default=4000, help='minimum number of documents in each dataset')
+parser.add_argument('--max_docs', type=int, default=5000, help='maximum number of documents in each dataset')
 parser.add_argument('--test_categories', type=list, default=['autot', 'musiikki', 'luonto', 'vaalit', 'taudit'], help='News categories used in the test data')
 parser.add_argument('--tr_val_categories', type=list, default=['työllisyys','jääkiekko', 'kulttuuri', 'rikokset', 'koulut', 'tulipalot', 'ruoat'], help='News categories used in the training and validation data')
 parser.add_argument('--n_topics_tr', type=int, default=7, help='number of topics used in the training samples')
@@ -34,7 +34,7 @@ parser.add_argument('--noise_std', type=float, default=0.0001, help='defines the
 
 parser.add_argument('--rand_docs', type=str, default='no', help='defines whether random documents are selected to the sample')
 
-args = parser.parse_args('')
+args = parser.parse_args()
 print(args)
 
 ############Load data##############
