@@ -61,7 +61,57 @@ python3 get_samples.py
 
 ## Contrastive pretraining
 
+Contrastive model can be trained using the code in the `contrastive_training.py` file. The code takes a number of arguments, and the ones that have not appeared before are described individually below.
 
+`--data_path`: Path where samples were saved during data generation. Default path is `data/samples`.
+
+`--res_path`: Path where a dictionary containing the training results are saved. Default path is `results/`.
+
+`--model_path`: Path for saving the PyTorch model. Default path is `model/contrastive_model.pt`.
+
+`--continue_tr`: Defines whether training is continued using a saved model. Default is 'no'.
+
+`--batch_size`: Size of the batch defined as number of timepoints in one batch. Default size is 3000.
+
+`--tr_size`: Defines the number of sample datasets in the training dataset. Default number is 3000.
+
+`--val_size`: Defines the number of sample datasets in the validation dataset. Default number is 2000.
+
+`--ts_size`: Defines the number of sample datasets in the test dataset. Default number is 1000.
+
+`--lr`: Defines the learning rate. Default is 0.01.
+
+`--epochs`: Defines the number of training epochs. Default is 50.
+
+`--hidden_size`: Defines the hidden state size of the bidirectional LSTM layers. Default is 10.
+
+`--lstm_layers`: Number of LSTM layers used in the model. Default number is 2.
+
+`--emb_size`: Size of the document embedding vector. Default size is 300.
+
+`--te_output_size`: Size of the vector that is used as input to the LSTM layers. Default size is 300.
+
+`--rnn_output_size`: Size of the vector that is the output of the model. Default size is 300.
+
+`--lstm_dropout`: Defines the dropout probability for the bidirectional LSTM layers. Default probability is 0.2.
+
+`--attn_dropout`: Defines the dropout probability for the transformer encoder layers. Default probability is 0.2.
+
+`--n_heads`: Number of attention heads used in the transformer encoder layers. Default is 2.
+
+`--attn_layers'`: Number of transformer encoder layers used in the model. Default number is 4.
+
+`--tau'`: Temperature parameter for the SupCon loss function. Default value is 0.6.
+
+`--smoothing_type'`: Type of smoothing calculation used by the model. Options are 'mean', 'std', 'double' and 'no', when smothing is not applied. Default value is 'no'.
+
+`--window_size'`: Size of the smoothing window. Default size is 9.
+
+
+To run the code, add the required arguments to the following code:
+```
+python3 contrastive_training.py
+```
 
 ## Unsupervised classification
 
