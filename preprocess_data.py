@@ -18,9 +18,9 @@ stops_fi = set(stopwords.words('finnish'))
 parser = argparse.ArgumentParser()
 
 parser.add_argument('--data_path', type=str, default='yle/ylenews-fi-2011-2018-src/data/fi', help='Folder containing data')
-parser.add_argument('--save_path', type=str, default='yle/', help='Path to folder where results are saved')
+parser.add_argument('--save_path', type=str, default='data//', help='Path to folder where results are saved')
 
-args = parser.parse_args('')
+args = parser.parse_args()
 
 # Reads the .josn files from the given folder, extracts relevant fields and saves the articles in 
 # a Pandas dataframe to a given location
