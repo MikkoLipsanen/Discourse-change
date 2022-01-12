@@ -108,13 +108,43 @@ Contrastive model can be trained using the code in the `contrastive_training.py`
 `--window_size'`: Size of the smoothing window. Default size is 9.
 
 
-To run the code, add the required arguments to the following code:
+To run the code, add the required arguments to the following snippet:
 ```
 python3 contrastive_training.py
 ```
 
 ## Saving timepoint and document vectors 
 
+In order to save the timepoint vectors, which are an intermediate product of the contrastive model, for further use, the code in `save_timepoint_vecs.py` file can be used.
+
+`--data_path`: Path where samples were saved during data generation. Default path is `data/samples`.
+
+`--save_path`: Path where the timepoint vectors are saved. Default path is `results/timepoint_vecs/`.
+
+`--model_path`: Path where the PyTorch model was saved. Default path is `model/contrastive_model.pt`.
+
+It is important that the other arguments defining the model parameters are the same that were used for the contrastive model.
+
+To run the code, add the required arguments to the following snippet:
+```
+python3 save_timepoint_vecs.py
+```
+
+In order to save the document vectors, which are also an intermediate product of the contrastive model, for further use, the code in `save_doc_vecs.py` file can be used.
+
+
+`--save_path`: Path where the document vectors are saved. Default path is `results/doc_vecs/`.
+
+`--n_docs`: Number of document vectors sampled from each dataset. Default number is 2000.
+
+`--n_samples`: Number of datasets sampled. Default number is 5.
+
+It is important that the other arguments defining the model parameters are the same that were used for the contrastive model.
+
+To run the code, add the required arguments to the following snippet:
+```
+python3 save_doc_vecs.py
+```
 
 ## Unsupervised classification
 
