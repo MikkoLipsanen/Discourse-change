@@ -18,7 +18,46 @@ python3 preprocess_data.py --data_path 'data/yle/ylenews-fi-2011-2018-src/data/f
 
 ## Synthetic dataset generation
 
+Synthetic datasets can be created using the code in the `get_samples.py` file. The functions used for data generation take a number of arguments that are described individually below.
 
+`--data_path`: Path where `df_light.pkl` file was saved during preprocessing. Default path is `data/df_light.pkl`.
+
+`--emb_path`: Path where `embeddings_dict.pkl` file was saved during preprocessing. Default path is `data/embeddings_dict.pkl`.
+
+`--save_path`: Folder where the generated samples are saved. Default path is `data/samples`. This folder needs to ave two subfolders, `train` and `test`.
+
+`--tr_samples`: Number of samples datasets that are needed for training and validation sets combined. Default number is 5000.
+
+`--ts_samples`: Number of samples datasets that are needed for test data. Default number is 2000.
+
+`--num_timepoints`: Number of timepoints in a single sample dataset. Default number is 100.
+
+`--min_docs`: Minimum number of documents in a single sample dataset. Default number is 4000.
+
+`--max_docs`: Maximum number of documents in a single sample dataset. Default number is 5000.
+
+`--test_categories`: Article categories used for the test data. Default categories are 'autot', 'musiikki', 'luonto', 'vaalit' and 'taudit'.
+
+`--tr_val_categories`: Article categories used for the train and validation data. Default categories are 'työllisyys','jääkiekko', 'kulttuuri', 'rikokset', 'koulut', 'tulipalot' and 'ruoat'.
+
+`--n_topics_tr`: Number of topics used in the training and validation samples. Default number is 7.
+
+`--n_topics_ts`: Number of topics used in the test samples. Default number is 5.
+
+`--n_unstable`: Number of unstable categories used in the samples. Default number is 1.
+
+`--n_stable`: Number of stable categories used in the samples. Default number is 1.
+
+`--add_noise`: Defines whether random noise is added to the discourse patterns. Default is 'no'.
+
+`--noise_std`: If noise is added, defines the standard deviation of the gaussian random noise. Default is 0.0001.
+
+`--rand_docs`: Defines whether random documents are used for the stable categories. If this option is chosen, it impacts the number of topics in the data. Default is 'no'.
+
+To run the code, add the required arguments to the following code:
+```
+python3 get_samples.py
+```
 
 ## Contrastive pretraining
 
