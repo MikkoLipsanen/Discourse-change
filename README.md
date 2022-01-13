@@ -179,6 +179,8 @@ Supervised timepoint classification can both be performed with the code in the f
 
 `--pos_w`: Weight parameter for the loss function. Default weight is 3.
 
+`--epochs`: Defines the number of training epochs. Default is 20.
+
 It is important that the other arguments defining the model parameters are the same that were used for the contrastive model.
 
 To run the code, add the required arguments to the following snippet:
