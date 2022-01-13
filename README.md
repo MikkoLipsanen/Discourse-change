@@ -171,9 +171,20 @@ To run the code, add the required arguments to the following snippet:
 python3 unsup_tp_class.py
 ```
 
-
 ## Supervised timepoint classification
 
+Supervised timepoint classification can both be performed with the code in the file `supervised_tp_class.py`.
+
+`--save_model_path`: Path where the classification model is saved. Default path is `model/supervised_tp_model.pt`.
+
+`--pos_w`: Weight parameter for the loss function. Default weight is 3.
+
+It is important that the other arguments defining the model parameters are the same that were used for the contrastive model.
+
+To run the code, add the required arguments to the following snippet:
+```
+python3 supervised_tp_class.py
+```
 
 ## Supervised pattern based classification
 
