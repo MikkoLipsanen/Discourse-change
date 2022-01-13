@@ -146,9 +146,30 @@ To run the code, add the required arguments to the following snippet:
 python3 save_doc_vecs.py
 ```
 
-## Unsupervised classification
+## Unsupervised timepoint classification and pivot point detection
 
+Unsupervised timepoint classification and pivot point prediction can both be performed with the code in the file `unsup_tp_class.py`.
 
+`--data_path`: Path where the timepoint vectors were saved. Default path is `results/timepoint_vecs/timepoint_vecs.pkl`.
+
+`--n_perm`: Number of permutations used for each dataset. Default number is 1000.
+
+`--win_size`: Size of the smoothing window used when computing the averaged timelines. Default size is 10.
+
+`--p_threshold`: P-value threshold. Default threshold is 0.05.
+
+`--pad_mode`: Defines what values are used for padding. Default mode is 'mean'. Other padding options can be found at https://numpy.org/doc/stable/reference/generated/numpy.pad.html.
+
+`--dist`: Distance measure used for calculating timepoint distances. Default measure is 'cosine'. Other option is 'euclidean'.
+
+`--vis_samples`: Diefines the number of random samples that are visualized. Default number is 0.
+
+`--pr_margin`: Defines the margin parameter for ruptures precision_recall-function. Default margin is 5.
+
+To run the code, add the required arguments to the following snippet:
+```
+python3 unsup_tp_class.py
+```
 
 ## Unsupervised pivot point detection
 
