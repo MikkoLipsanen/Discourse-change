@@ -190,5 +190,17 @@ python3 supervised_tp_class.py
 
 ## Supervised pattern based classification
 
+Supervised pattern based classification can both be performed with the code in the file `supervised_pattern_class.py`.
+
+`--save_model_path`: Path where the classification model is saved. Default path is `model/supervised_pattern_model.pt`.
+
+`--n_cats`: Number of different discourse patterns in the data. Default number is 7.
+
+It is important that the other arguments defining the model parameters are the same that were used for the contrastive model.
+
+To run the code, add the required arguments to the following snippet:
+```
+python3 supervised_pattern_class.py
+```
 
 ## Supervised pivot point detection
