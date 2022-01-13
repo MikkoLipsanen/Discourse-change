@@ -9,8 +9,6 @@ import pickle
 
 parser = argparse.ArgumentParser(description='K-means clustering')
 
-file_name = 'Noise0001_vecs.pkl'
-
 parser.add_argument('--data_path', type=str, default='results/timepoint_vecs/timepoint_vecs.pkl', help='path to vecs')
 parser.add_argument('--n_samples', type=int, default=2, help='number of samples')
 
