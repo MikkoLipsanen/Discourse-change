@@ -226,6 +226,22 @@ This group of methods are used for evaluating the performance of contrastive pre
 
 ### t-SNE
 
+t-SNE visualization for timepoint vectors can be performed with the code in the file `t_SNE.py`.
+
+`--data_path'`: Path where the timepoint timepoint vectors were saved. Default path is `results/timepoint_vecs/timepoint_vecs.pkl`. 
+
+`--perplexity`: Perplexity parameter for the t-SNE operation. Default perplexity is 30.
+
+`--n_iter`: Number of iterations used in the t-SNE operation. Default number is 300.
+
+`--n_vecs`: Number of timepoint vectors used in the t-SNE operation. Default number is 50000.
+
+This code can be easily modified to perform the t-SNE operation also to model output vectors and document vectors.
+
+To run the code, add the required arguments to the following snippet:
+```
+python3 t_SNE.py
+```
 
 ### K-means clustering
 
