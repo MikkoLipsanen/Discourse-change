@@ -245,7 +245,7 @@ python3 t_SNE.py
 
 ### K-means clustering
 
-K-means clustering os the timepoint vectors can be performed with the code in the file `k_means.py`.
+K-means clustering of the timepoint vectors can be performed with the code in the file `k_means.py`.
 
 `--data_path'`: Path where the timepoint timepoint vectors were saved. Default path is `results/timepoint_vecs/timepoint_vecs.pkl`. 
 
@@ -259,3 +259,18 @@ python3 k_means.py
 ```
 
 ### Permutation testing
+
+Permutation testing can be performed for the timepoint vectors with the code in the file `permutations.py`.
+
+`--data_path'`: Path where the timepoint timepoint vectors were saved. Default path is `results/timepoint_vecs/timepoint_vecs.pkl`. 
+
+`--n_perm`: Number of permutations per dataset used in the tests. Default number is 1000.
+
+`--n_sets`: Number of sample dataset used in the tests. Default number is 400.
+
+This code can be easily modified to perform permutation testing also to model output vectors and document vectors.
+
+To run the code, add the required arguments to the following code snippet:
+```
+permutations.py
+```
