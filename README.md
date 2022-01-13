@@ -171,12 +171,11 @@ To run the code, add the required arguments to the following snippet:
 python3 unsup_tp_class.py
 ```
 
-## Unsupervised pivot point detection
+
+## Supervised timepoint classification
 
 
-
-## Supervised classification
-
+## Supervised pattern based classification
 
 
 ## Supervised pivot point detection
