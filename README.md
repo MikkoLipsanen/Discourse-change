@@ -54,7 +54,7 @@ Synthetic datasets can be created using the code in the `get_samples.py` file. T
 
 `--rand_docs`: Defines whether random documents are used for the stable categories. If this option is chosen, it impacts the number of topics in the data. Default is 'no'.
 
-To run the code, add the required arguments to the following code:
+To run the code, add the required arguments to the following code snippet:
 ```
 python3 get_samples.py
 ```
@@ -108,7 +108,7 @@ Contrastive model can be trained using the code in the `contrastive_training.py`
 `--window_size'`: Size of the smoothing window. Default size is 9.
 
 
-To run the code, add the required arguments to the following snippet:
+To run the code, add the required arguments to the following code snippet:
 ```
 python3 contrastive_training.py
 ```
@@ -125,7 +125,7 @@ In order to save the timepoint vectors, which are an intermediate product of the
 
 It is important that the other arguments defining the model parameters are the same that were used for the contrastive model.
 
-To run the code, add the required arguments to the following snippet:
+To run the code, add the required arguments to the following code snippet:
 ```
 python3 save_timepoint_vecs.py
 ```
@@ -141,7 +141,7 @@ In order to save the document vectors, which are also an intermediate product of
 
 It is important that the other arguments defining the model parameters are the same that were used for the contrastive model.
 
-To run the code, add the required arguments to the following snippet:
+To run the code, add the required arguments to the following code snippet:
 ```
 python3 save_doc_vecs.py
 ```
@@ -166,7 +166,7 @@ Unsupervised timepoint classification and pivot point prediction can both be per
 
 `--pr_margin`: Defines the margin parameter for ruptures precision_recall-function. Default margin is 5.
 
-To run the code, add the required arguments to the following snippet:
+To run the code, add the required arguments to the following code snippet:
 ```
 python3 unsup_tp_class.py
 ```
@@ -183,7 +183,7 @@ Supervised timepoint classification can both be performed with the code in the f
 
 It is important that the other arguments defining the model parameters are the same that were used for the contrastive model.
 
-To run the code, add the required arguments to the following snippet:
+To run the code, add the required arguments to the following code snippet:
 ```
 python3 supervised_tp_class.py
 ```
@@ -198,7 +198,7 @@ Supervised pattern based classification can be performed with the code in the fi
 
 It is important that the other arguments defining the model parameters are the same that were used for the contrastive model.
 
-To run the code, add the required arguments to the following snippet:
+To run the code, add the required arguments to the following code snippet:
 ```
 python3 supervised_pattern_class.py
 ```
@@ -215,7 +215,7 @@ Supervised pivot point detection can be performed with the code in the file `sup
 
 It is important that the other arguments defining the model parameters are the same that were used for the timepoint classification model.
 
-To run the code, add the required arguments to the following snippet:
+To run the code, add the required arguments to the following code snippet:
 ```
 python3 supervised_pivot_point_pred.py
 ```
@@ -238,12 +238,24 @@ t-SNE visualization for timepoint vectors can be performed with the code in the 
 
 This code can be easily modified to perform the t-SNE operation also to model output vectors and document vectors.
 
-To run the code, add the required arguments to the following snippet:
+To run the code, add the required arguments to the following code snippet:
 ```
 python3 t_SNE.py
 ```
 
 ### K-means clustering
 
+K-means clustering os the timepoint vectors can be performed with the code in the file `k_means.py`.
+
+`--data_path'`: Path where the timepoint timepoint vectors were saved. Default path is `results/timepoint_vecs/timepoint_vecs.pkl`. 
+
+`--n_samples`: Number of sample sets used in the t-SNE operation. Default number is 500.
+
+This code can be easily modified to perform K-means clustering also to model output vectors and document vectors.
+
+To run the code, add the required arguments to the following code snippet:
+```
+python3 k_means.py
+```
 
 ### Permutation testing
