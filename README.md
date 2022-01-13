@@ -190,7 +190,7 @@ python3 supervised_tp_class.py
 
 ## Supervised pattern based classification
 
-Supervised pattern based classification can both be performed with the code in the file `supervised_pattern_class.py`.
+Supervised pattern based classification can be performed with the code in the file `supervised_pattern_class.py`.
 
 `--save_model_path`: Path where the classification model is saved. Default path is `model/supervised_pattern_model.pt`.
 
@@ -204,3 +204,30 @@ python3 supervised_pattern_class.py
 ```
 
 ## Supervised pivot point detection
+
+Supervised pivot point detection can be performed with the code in the file `supervised_pivot_point_pred.py`.
+
+`--model_path`: Path where the timepoint classification model was saved. Default path is `model/supervised_tp_model.pt`.
+
+`--ts_size`: Number of datasets used for the task. Default number is 1000.
+
+`--pr_margin`: Defines the margin parameter for ruptures precision_recall-function. Default margin is 5.
+
+It is important that the other arguments defining the model parameters are the same that were used for the timepoint classification model.
+
+To run the code, add the required arguments to the following snippet:
+```
+python3 supervised_pivot_point_pred.py
+```
+
+## Evaluation methods
+
+This group of methods are used for evaluating the performance of contrastive pretraining.
+
+### t-SNE
+
+
+### K-means clustering
+
+
+### Permutation testing
