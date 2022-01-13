@@ -42,6 +42,8 @@ parser.add_argument('--attn_layers', type=int, default=4, help='number of Transf
 parser.add_argument('--attn_dropout', type=float, default=0.2, help='dropout probability for TransformerEncoder')
 parser.add_argument('--pos_w', type=float, default=3, help='weight for the loss function')
 parser.add_argument('--job_name', type=str, default='supervised_tp_classification', help='name used in the saved result files')
+parser.add_argument('--smoothing_type', type=str, default='no', help='Type of smoothing calculation')
+parser.add_argument('--window_size', type=int, default=9, help='Size of the smoothing window')
 
 args = parser.parse_args()
 print(args)
@@ -230,9 +232,16 @@ rnn_batch_size = int(args.batch_size / args.timepoints)
 # Define the output size for LSTM
 lstm_output_size = int(2 * args.hidden_size*(args.batch_size / rnn_batch_size))
 
+if args.smoothing_type == 'no':
+    rnn_input_size = fc_output_size
+elif args.smoothing_type == 'double':
+    rnn_input_size = fc_output_size * 3
+else:
+    rnn_input_size = fc_output_size * 2
+
 # Instantiate the models
 tp_emb = TimepointEmbedding(fc_input_size, fc_output_size, args.emb_size, args.n_heads, args.attn_layers, args.attn_dropout).to(device)
-rnn = RNN(fc_output_size, args.hidden_size, lstm_output_size, args.lstm_layers, args.rnn_output_size).to(device)
+rnn = RNN(rnn_input_size, args.hidden_size, lstm_output_size, args.lstm_layers, args.rnn_output_size).to(device)
 cl = Classifier(args.rnn_output_size, args.timepoints).to(device)
 
 # Print model architectures
@@ -258,6 +267,25 @@ if 'cl_state_dict' in checkpoint:
     epoch = checkpoint['epoch']
     epoch_count += epoch
 print('Model loaded succesfully.')
+
+# Function for applying smoothing to the timepoint level data
+def smoothen_data(data):
+    pad = int((args.window_size - 1) / 2)
+    data_padded = F.pad(input=data, pad=(0,0,pad,pad), mode='constant', value=0)
+    rolled_data = data_padded.unfold(dimension=0, size=args.window_size, step=1)
+
+    if args.smoothing_type == 'mean':
+        tmp = rolled_data.mean(dim=2)
+    elif args.smoothing_type == 'std':
+        tmp = rolled_data.std(dim=2)
+    elif args.smoothing_type == 'double':
+        t = rolled_data.mean(dim=2)
+        t2 = rolled_data.std(dim=2)
+        tmp = torch.cat((t, t2), 1)
+
+    res = torch.cat((data, tmp), 1)
+
+    return res
 
 
 def eval_results(cl_output, y_train):
@@ -297,7 +325,12 @@ def train_model():
         # Calculate output
         tp_emb_output = tp_emb(x_train)
         batch_size = int(tp_emb_output.shape[0] / args.timepoints)
-        rnn_output = rnn(tp_emb_output.reshape((batch_size, -1, args.te_output_size)))
+
+        if args.smoothing_type != 'no':
+            tp_emb_output = smoothen_data(tp_emb_output)
+
+        rnn_input = tp_emb_output.reshape(batch_size, -1, tp_emb_output.shape[1])
+        rnn_output = rnn(rnn_input)
         cl_output = cl(rnn_output)
         cl_output = torch.flatten(cl_output)
         
@@ -360,7 +393,12 @@ def eval_model():
             # Calculate output
             tp_emb_output = tp_emb(x_val)
             batch_size = int(tp_emb_output.shape[0] / args.timepoints)
-            rnn_output = rnn(tp_emb_output.reshape((batch_size, -1, args.te_output_size)))
+
+            if args.smoothing_type != 'no':
+                tp_emb_output = smoothen_data(tp_emb_output)
+
+            rnn_input = tp_emb_output.reshape(batch_size, -1, tp_emb_output.shape[1])
+            rnn_output = rnn(rnn_input)
             cl_output = cl(rnn_output)
             cl_output = torch.flatten(cl_output)
         
@@ -415,7 +453,12 @@ def test_model():
             # Calculate output
             tp_emb_output = tp_emb(x_test)
             batch_size = int(tp_emb_output.shape[0] / args.timepoints)
-            rnn_output = rnn(tp_emb_output.reshape((batch_size, -1, args.te_output_size)))
+
+            if args.smoothing_type != 'no':
+                tp_emb_output = smoothen_data(tp_emb_output)
+
+            rnn_input = tp_emb_output.reshape(batch_size, -1, tp_emb_output.shape[1])
+            rnn_output = rnn(rnn_input)
             cl_output = cl(rnn_output)
             cl_output = torch.flatten(cl_output)
         
