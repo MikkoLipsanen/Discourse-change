@@ -6,7 +6,7 @@ import pandas as pd
 from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
 import seaborn as sns
-import pickle5 as pickle
+import pickle
 import plotly.express as px
 
 
